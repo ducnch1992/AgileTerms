@@ -16,8 +16,8 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 ```
 cd existing_repo
 git remote add origin https://gitsource.axonactive.com/training/devopscourse2022.git
-git branch -M main
-git push -uf origin main
+git switch  Final-agile-local
+git push origin Final-agile-local
 ```
 
 ## Integrate with your tools
