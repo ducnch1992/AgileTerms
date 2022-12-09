@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+
+    tools {
+        maven '3.8.6'
+
+    }
+    environment {
+        DOCKER_HOME = '/usr/bin'
+        DOCKER = '${DOCKER_HOME}/docker'
+        IMAGE_NAME = 'backend_dev_img:v0.0.1'
+        CONTAINER_NAME = 'backend_dev'
+        PORT_DEV = 8080
+        PORT_TEST = 8081
+    }
+
+
+    stages {
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh """
+                    mvn clean
+                    rm agileterm-0.0.1-SNAPSHOT.jar
+                    mvn clean verify sonar:sonar -Pdev
+                    """
+                }
+            }
+        }
+
+        stage('Quality Gate'){
+            steps {
+              timeout(time: 5, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+        }
+
+        stage('Show Report'){
+        steps{
+               publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
+            }
+        }
+
+        stage('Move jar file') {
+            steps {
+                sh """
+                    mv ./target/agileterm-0.0.1-SNAPSHOT.jar .
+                """
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                sh """
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                    docker rmi $IMAGE_NAME || true
+                    docker build -t $IMAGE_NAME .
+
+                """
+            }
+        }
+        stage('Check and run container') {
+            steps {
+                sh """
+                    docker run --name $CONTAINER_NAME --restart unless-stopped -v //home/hcmc-sun/agileterms_be_dev_logs:/logs -d -e TZ=Asia/Ho_Chi_Minh -p $PORT_DEV:8080 $IMAGE_NAME
+                """
+            }
+        }
+
+    }
+
+    post{
+            success {
+                mail to: "hcmc-itclass@axonactive.com",
+                subject: "${JOB_NAME}",
+                body: "Successfully built! - ${BUILD_URL}"
+            }
+            failure {
+                mail to: "hcmc-itclass@axonactive.com",
+                subject: "${JOB_NAME}",
+                body: "Built failed! - ${BUILD_URL}"
+            }
+        }
+}

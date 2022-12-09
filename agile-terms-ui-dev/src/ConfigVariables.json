@@ -1,0 +1,4 @@
+{
+    "_comment 1": "File size limit in MB of uploaded .xlsx and .xls files",
+    "EXCEL_MAX_FILE_SIZE": "10"
+  }

@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  app:
+    container_name: agile-terms
+    image: agile-terms
+    ports:
+      - "8088:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://3.27.34.233 :5432/agile_term_test
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#    depends_on:
+#      - postgresql
+#
+#  postgresql:
+#    container_name: agile_term_dev
+#    image: postgres
+#    ports:
+#      - "5499:5432"
+#    environment:
+#      - POSTGRES_USER=admin
+#      - POSTGRES_PASSWORD=aavn123
+#      - POSTGRES_DB=agile-term-dev
+#      - PGDATA=/var/lib/postgresql/data/pgdata
+#    restart: unless-stopped
+#
+#volumes:
+#  sample_db: {}

@@ -1,0 +1,59 @@
+@import "../../../assets/style/styles.scss";
+
+.term-header {
+  background-color: white;
+
+  .term-title {
+    .term-title__text {
+      font-weight: bold;
+      color: $topic-text-dark;
+      font-size: 1.5rem;
+    }
+  }
+
+  .topic-related-line {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  .term-topic__display-option {
+    cursor: pointer;
+  }
+
+  .topic-badge {
+    border-radius: 7px;
+    &:hover {
+      background-color: $navbar-bg-primary !important;
+      color: aliceblue !important;
+
+      box-shadow: 2px 4px $hover-shadow;
+    }
+  }
+}
+
+@include responsive_576 {
+  .term-header {
+    .term-title__text {
+      padding-bottom: 0.5em !important;
+    }
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+  }
+}
+
+@include responsive_768 {
+  .term-header {
+    .term-title {
+      .term-title__text {
+        font-size: 1.8rem;
+      }
+    }
+    .topic-related-line {
+      font-size: 1.2rem;
+    }
+  }
+}
+@include responsive_992 {
+}
+@include responsive_1200 {
+}

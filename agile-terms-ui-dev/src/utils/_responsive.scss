@@ -1,0 +1,25 @@
+$res_576: "screen and (min-width: 576px)";
+$res_768: "screen and (min-width: 768px)";
+$res_992: "screen and (min-width: 992px)";
+$res_1200: "screen and (min-width: 1200px)";
+
+@mixin responsive_576() {
+  @media #{$res_576} {
+    @content;
+  }
+}
+@mixin responsive_768() {
+  @media #{$res_768} {
+    @content;
+  }
+}
+@mixin responsive_992() {
+  @media #{$res_992} {
+    @content;
+  }
+}
+@mixin responsive_1200() {
+  @media #{$res_1200} {
+    @content;
+  }
+}

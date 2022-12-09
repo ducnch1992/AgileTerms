@@ -1,0 +1,47 @@
+@import "../../assets/style/styles.scss";
+
+.term-contribution {
+  border: 1px solid $btn-vote-inactive;
+  border-radius: 8px;
+
+  &__shadow {
+    box-shadow: 0 4px 5px -2px $hover-shadow;
+  }
+
+  .term-hint__detail {
+    font-size: 12px;
+  }
+
+  .description-hint {
+    &__detail {
+      font-size: 12px;
+    }
+
+    &__character-count {
+      font-size: 12px;
+    }
+  }
+
+  .save-btn,
+  .cancel-btn {
+    color: $login-signup-bar;
+    border-radius: 8px !important;
+    &:hover {
+      background-color: $btn-login-color-hover;
+    }
+  }
+
+  .save-btn {
+    background-color: $navbar-bg-primary;
+    &:disabled {
+      opacity: 0.35;
+    }
+  }
+
+  .cancel-btn {
+    background-color: $hover-shadow;
+  }
+
+  @include responsive_576 {
+  }
+}

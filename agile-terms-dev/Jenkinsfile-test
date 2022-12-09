@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    tools {
+        maven '3.8.6'
+
+    }
+    environment {
+        DOCKER_HOME = '/usr/bin'
+        DOCKER = '${DOCKER_HOME}/docker'
+        IMAGE_NAME = 'backend_test_img:v0.0.1'
+        CONTAINER_NAME = 'backend_test'
+        PORT_DEV = 8080
+        PORT_TEST = 8081
+    }
+
+
+    stages {
+        stage('Build jar file') {
+            steps {
+                sh """
+                    rm agileterm-0.0.1-SNAPSHOT.jar
+                    mvn clean install -DskipTests -Ptest
+                    mv ./target/agileterm-0.0.1-SNAPSHOT.jar .
+                """
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                sh """
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                    docker rmi $IMAGE_NAME || true
+                    docker build -t $IMAGE_NAME .
+                """
+            }
+        }
+        stage('Check and run container') {
+            steps {
+                sh """
+                    docker run --name $CONTAINER_NAME --restart unless-stopped -v //home/hcmc-sun/agileterms_be_test_logs:/logs -d -e TZ=Asia/Ho_Chi_Minh -p $PORT_TEST:8080 $IMAGE_NAME
+                """
+            }
+        }
+    }
+
+     post{
+            success {
+                mail to: "hcmc-itclass@axonactive.com",
+                subject: "${JOB_NAME}",
+                body: "Successfully built! - ${BUILD_URL}"
+            }
+            failure {
+                mail to: "hcmc-itclass@axonactive.com",
+                subject: "${JOB_NAME}",
+                body: "Built failed! - ${BUILD_URL}"
+            }
+        }
+}

@@ -1,0 +1,49 @@
+@import "../../../assets/style/styles.scss";
+
+.homepage-header {
+  background-color: white;
+  .popular-topic {
+    border-bottom: 4px groove rgba(79, 76, 76, 0.3) !important  ;
+    &__item {
+      border-radius: 7px !important;
+      &:hover {
+        background-color: $navbar-bg-primary !important;
+        color: aliceblue !important;
+        box-shadow: 2px 4px #888888;
+      }
+    }
+  }
+  .homepage-title {
+    margin-bottom: 2%;
+    &__text {
+      font-weight: bold;
+      color: $topic-text-dark;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// RESPONSIVE
+@include responsive_576 {
+  .homepage-header {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+    padding-bottom: 2em;
+    .popular-topic__shadow {
+      box-shadow: 0 5px 3px -3px gray;
+    }
+    .popular-topic {
+      border-bottom: 1px groove !important;
+    }
+
+    .homepage-title {
+      margin-bottom: 2%;
+    }
+  }
+}
+
+@include responsive_768 {
+  .save-btn, .cancel-btn{
+    margin: 2px 20px 0 0 !important;
+  }
+}

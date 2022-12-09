@@ -1,0 +1,29 @@
+@import "../../assets/style/styles.scss";
+
+.bg-light {
+  min-height: 100vh;
+  .row{
+    padding-left: 15px;
+  }
+  .box {
+    background-color: $navbar-bg-primary;
+    color: $header-title-primary;
+    h4 {
+      height: 6vh;
+      padding-top: 10px;
+      padding-bottom: 60px;
+      margin-bottom: 0px;
+    }
+  }
+  .text {
+    background-color: rgb(226, 243, 251);
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .message {
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border: 1px solid $navbar-bg-primary;
+    background-color: white;
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../assets/style/styles.scss";
+
+@include responsive_576 {
+  .failed-content {
+    &__button {
+      font-size: 10rem;
+    }
+  }
+}
+
+.failed-content {
+  background-color: $background-color;
+  &__string {
+    color: $denied-icon-color;
+    font-weight: bold;
+  }
+  &__button {
+    color: $denied-icon-color;
+    font-size: 17rem;
+  }
+  .btn-return-homepage {
+    background-color: $btn-login-color;
+    color: $topic-text-light;
+    border: none;
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../assets/style/styles.scss";
+
+.display-option {
+  color: $btn-login-color;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.failed-result__label{
+  background-color:$failed-upload-label;
+}

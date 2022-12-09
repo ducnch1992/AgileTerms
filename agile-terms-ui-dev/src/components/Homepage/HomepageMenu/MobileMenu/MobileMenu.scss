@@ -1,0 +1,19 @@
+@import "../../../../assets/style/styles.scss";
+
+.mobile-menu {
+  background-color: white;
+  .popular-topic__shadow {
+    box-shadow: 0 4px 4px -2px grey;
+  }
+  .mobile-menu_select {
+    width: 100vh;
+
+    .mobile-menu_item {
+      background-color: #f0ecec;
+
+      &:focus {
+        background-color: #595959;
+      }
+    }
+  }
+}

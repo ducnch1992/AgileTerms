@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    tools {
+        maven '3.8.6'
+
+    }
+    environment {
+        DOCKER_HOME = '/usr/bin'
+        DOCKER = '${DOCKER_HOME}/docker'
+        IMAGE_NAME = 'backend_dev_img:v0.0.1'
+        CONTAINER_NAME = 'backend_dev'
+        PORT_DEV = 8080
+        PORT_TEST = 8081
+    }
+
+
+    stages {
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh """
+                    mvn clean
+                    rm agileterm-0.0.1-SNAPSHOT.jar
+                    mvn clean verify sonar:sonar -Pdev
+                    """
+                }
+            }
+        }
+
+        stage('Quality Gate'){
+            steps {
+              timeout(time: 2, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+        }
+
+        stage('Show Report'){
+        steps{
+               publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
+            }
+        }
+    }
+}

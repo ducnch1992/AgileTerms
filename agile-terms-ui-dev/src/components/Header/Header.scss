@@ -1,0 +1,88 @@
+@import "../../assets/style/styles.scss";
+
+header {
+  .navbar {
+    background-color: $navbar-bg-primary;
+    .btn-login {
+      background-color: $btn-login-color;
+      color: $topic-text-light;
+      border: none;
+      font-size: 0.7rem;
+    }
+
+    .navbar-brand {
+      height: 3rem;
+      font-size: 0%;
+      #agile-term-logo {
+        height: 3rem;
+        filter: brightness(1000%);
+      }
+    }
+    .navbar__link {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .navbar__title {
+      color: $topic-text-light;
+      font-size: 1.1rem;
+      margin-bottom: 0%;
+    }
+    .navbar__slogan {
+      color: $topic-text-light;
+      font-size: 0.6rem;
+      display: none;
+    }
+    
+  }
+
+  
+}
+
+//Responsive ------------------------------------
+@include responsive_576 {
+  header {
+    .navbar {
+      .btn-login{
+        font-size: 1rem;
+        margin-left: auto !important;
+      }
+      .navbar__title {
+        font-size: 1.8rem;
+
+      }
+      .navbar-brand{
+        height: 10vh;
+        #agile-term-logo{
+          height: 100%;
+        }
+      }
+      .navbar__slogan {
+        font-size: 1rem;
+        display: inherit;
+      }
+      
+    }
+  }
+}
+
+@include responsive_768 {
+  header {
+    .navbar {
+      .navbar__title {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+@include responsive_992 {
+}
+@include responsive_1200 {
+  header {
+    .navbar {
+      .navbar__slogan {
+        font-size: 1rem;
+      }
+    }
+  }
+}

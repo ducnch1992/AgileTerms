@@ -1,0 +1,108 @@
+@import "../../assets/style/styles.scss";
+
+$login_height: $full_view_height - $header_height - $footer_height;
+$form_height: $login_height * 0.8;
+
+#root {
+  background-color: $background-color;
+}
+
+.login-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: $login_height;
+  margin: 0 auto;
+  padding: 1.5rem 0 0;
+  background-color: $login-signup-bar;
+
+  label {
+    pointer-events: none;
+  }
+
+  .container {
+    margin-top: 3rem;
+    padding: 5%;
+    min-height: $form_height;
+    background-color: $login-signup-bar;
+
+    .login-signup-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-flow: row nowrap;
+
+      padding: 0px 15px;
+
+      position: relative;
+      top: -2.8rem;
+
+      background-color: $background-color;
+      width: 100%;
+
+      min-height: 3.75rem;
+      border-radius: 2.5rem;
+
+      .pill {
+        text-align: center;
+        width: 50%;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .active-pill {
+        border-radius: 2.5rem;
+        box-shadow: 1px 2px 5px $topic-text-dark;
+        background-color: $navbar-bg-primary;
+        color: $topic-text-light;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-weight: bold;
+        transition: 0.1s ease-in all;
+      }
+    }
+  }
+
+  .login-btn {
+    color: $login-signup-bar;
+    background-color: $navbar-bg-primary;
+    border-radius: 8px !important;
+    &:hover {
+      background-color: $btn-login-color-hover;
+    }
+  }
+
+  .password-suggest {
+    background-color: $login-signup-bar;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    font-weight: normal;
+    line-height: 0.8rem;
+    background-color: $background-color;
+  }
+}
+footer {
+  background-color: $navbar-bg-primary;
+  .footer-content {
+    height: $footer_height;
+    color: $topic-text-light;
+  }
+}
+
+@include responsive_576 {
+  .login-content {
+    width: 70%;
+    .container {
+      border-radius: 10px;
+      border: 1px solid $background-color;
+    }
+  }
+  footer {
+    .footer-content_version {
+      font-size: 1rem;
+    }
+  }
+}

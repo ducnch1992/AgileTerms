@@ -1,0 +1,12 @@
+package com.axonactive.agileterm.service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmailToken {
+    private String token;
+}

@@ -1,0 +1,75 @@
+pipeline {
+    agent any 
+
+    environment {
+        DOCKER_HOME = '/usr/bin'
+        DOCKER = '${DOCKER_HOME}/docker'
+        
+        NODE = '/usr/bin/nodejs'
+        NPM = '/usr/bin/npm'
+        
+        IMAGE_NAME = 'frontend_dev_img:v0.0.1'
+        CONTAINER_NAME = 'frontend_dev'
+        
+        DOCKER_NAME = 'Dockerfile-dev'
+
+        PORT_DEV = 3000
+        PORT_TEST = 3001
+    }
+
+    
+    stages {
+        stage('generate report'){
+            steps{
+                sh """ 
+                npm i
+                npm test
+                 """
+            }
+        }
+        stage('show report'){
+            steps{
+                publishHTML (target : [allowMissing: false,
+                             alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: './coverage/lcov-report/',
+                            reportFiles: 'index.html',
+                            reportName: 'My Reports',
+                            reportTitles: 'The Report'])
+            }
+        }
+        stage('Build image') {         
+            steps {
+                sh """                    
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                    docker rmi $IMAGE_NAME || true
+                    docker build -f $DOCKER_NAME -t $IMAGE_NAME .
+                """
+            }
+        }   
+        stage('Check and run container') {         
+            steps {    
+                sh """                                        
+                    docker run --name $CONTAINER_NAME --restart unless-stopped -d -e TZ=Asia/Ho_Chi_Minh -p $PORT_DEV:3000 $IMAGE_NAME
+                """
+            }
+        } 
+    }
+    post{
+        success {
+            mail to: "hcmc-itclass@axonactive.com",
+            subject: "${JOB_NAME}",
+            body: "FE dev Succesfully built! -- ${BUILD_URL}"
+        }
+        failure {
+            mail to: "hcmc-itclass@axonactive.com",
+            subject: "${JOB_NAME}",
+            body: "FE dev Built failed! -- ${BUILD_URL}"
+        }
+    }
+
+}
+
+
+

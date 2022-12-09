@@ -1,0 +1,28 @@
+version: "3"
+services:
+  agile-terms:
+    build:
+      context: ./agile-terms-dev
+    container_name: agile-terms
+    ports:
+      - "8088:8080"
+    depends_on:
+      [postgresdb]  
+  agile-terms-ui:
+    build:
+      context: ./agile-terms-ui-dev
+    container_name: agile-terms-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      [postgresdb]  
+  postgresdb:
+    image: postgres:15.1-alpine
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=SPRINGDB
+    restart: unless-stopped

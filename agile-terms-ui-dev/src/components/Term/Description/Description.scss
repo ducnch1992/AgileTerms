@@ -1,0 +1,75 @@
+@import "../../../assets/style/styles.scss";
+
+.description-section {
+  background-color: white;
+ 
+  .description-shadow{
+    box-shadow: 0 4px 5px -2px grey;
+  }
+  .description__detail {
+    border: 3px solid #f0ecec;
+    border-radius: 25px;
+    background-color: $description-bg-primary;
+
+    .description__content {
+      .term_heading {
+        font-size: 1.5rem;
+      }
+    }
+
+    .description__timestamp {
+      font-size: 0.85rem;
+
+      .description-author {
+        text-align: right;
+        &__name{
+          color: $text-author;        
+        }
+      }
+    }
+    .description__voting {
+      .description__arrow {
+        cursor: pointer;
+        font-size: 2rem;
+        &-up {
+          color: $btn-vote-active;
+        }
+        &-down {
+          color: $btn-vote-inactive;
+        }
+      }
+      .description__rating {
+        color: $text-color-axon;
+      }
+    }
+  }
+}
+
+@include responsive_576 {
+  .description-section {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+    .description-shadow{
+      box-shadow: 0 4px 5px -2px grey;
+    }
+    .description__detail {
+     
+      .description__content {
+        padding-right: 5em!important;
+        .description__timestamp{
+          padding-top: 0%!important;
+        }
+        .description-author {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+@include responsive_768 {
+}
+@include responsive_992 {
+}
+@include responsive_1200 {
+}

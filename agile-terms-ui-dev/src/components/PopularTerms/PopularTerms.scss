@@ -1,0 +1,39 @@
+@import "../../assets/style/styles.scss";
+
+.popular-term {
+    background-color: white;
+    padding-bottom: 2%;
+    .popular-term__description {
+      border: 3px solid #f0ecec;
+      border-radius: 25px;
+      background-color: $description-bg-primary;
+      padding-left: 10%;
+        padding-right: 10%;
+         .popular-term__description-heading {
+          font-size: 1.5rem;
+          color: $text-inspired;
+        }
+        }
+    .popular-term__shadow{
+      box-shadow: 0 4px 5px -2px gray;
+    }
+  }
+  
+  @include responsive_576 {
+    .popular-term {
+      padding-left: 3em !important;
+      padding-right: 3em !important;
+      .popular-term__description{
+        margin-bottom: 1.5em !important;
+      } 
+    }
+  }
+  
+  @include responsive_768 {
+  }
+  @include responsive_992 {
+  }
+  @include responsive_1200 {
+    
+  }
+  

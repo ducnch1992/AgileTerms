@@ -1,0 +1,25 @@
+@import "../../../../assets/style/styles.scss";
+input[type="radio"]:checked + label {
+  background-color: $navbar-bg-primary;
+  color: white;
+}
+
+.menu-items {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+
+  width: 20%;
+  border-radius: 5px;
+  &:hover {
+    background-color: $text-color-axon;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+@include responsive_576 {
+  .blank-div {
+    border-bottom: 1px solid $navbar-bg-primary;
+    border-radius: 0 0 0 5px;
+  }
+}

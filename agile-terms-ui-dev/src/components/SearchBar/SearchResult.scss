@@ -1,0 +1,38 @@
+@import "../../assets/style/styles.scss";
+
+.search-result {
+  min-height: 100vh;
+  background-color: white;
+  .term-found-list {
+    border-bottom: 4px groove rgba(79, 76, 76, 0.3) !important  ;
+    min-height: 21.5rem;
+    &__item {
+      border-radius: 7px !important;
+      background-color: $btn-login-color;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        background-color: $navbar-bg-primary !important;
+        color: aliceblue !important;
+        box-shadow: 2px 4px #888888;
+      }
+    }
+  }
+  .search-result-title {
+    margin-bottom: 2%;
+    &__text {
+      font-weight: bold;
+      color: $topic-text-dark;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@include responsive_768 {
+  .search-result {
+    background-color: white;
+    .term-found-list {
+      min-height: 5.3rem;
+    }
+  }
+}

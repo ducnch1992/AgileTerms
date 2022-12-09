@@ -1,0 +1,53 @@
+@import "../../assets/style/styles.scss";
+
+.search-icon {
+  color: $navbar-bg-primary;
+}
+
+.text-inspired {
+  color: $text-inspired;
+}
+
+.search-bar_description {
+  font-size: 0.75rem;
+}
+
+.btn-add-description {
+  background-color: $navbar-bg-primary !important;
+  color: $topic-text-light !important;
+  font-size: 0.5rem;
+  .btn-add-description__icon {
+    font-size: 1.5rem;
+    margin-right: 0rem;
+  }
+
+}
+.search-bar__shadow{
+  box-shadow: 0 4px 5px -3px gray;
+}
+
+
+@include responsive_576 {
+  .search-bar {
+    padding-left: 3em !important;
+    padding-right: 3em !important;  
+    padding-bottom: 3em !important;
+    
+  }
+    .search-bar_description {
+    font-size: 1.5rem;
+  }
+}
+
+@include responsive_768 {
+  .btn-add-description {
+    span{
+      font-size: 1rem;
+    }
+    .btn-add-description__icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+

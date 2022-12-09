@@ -1,0 +1,23 @@
+@import "../../assets/style/styles.scss";
+
+footer {
+  background-color: $navbar-bg-primary;
+  .footer-content {
+    height: $footer_height;
+    color: $topic-text-light;
+    &_version{
+      font-size: 0.65rem;
+    }
+  }
+}
+
+@include responsive_576 {
+  footer{
+    .footer-content_version{
+      font-size: 0.85rem;
+    }
+  }
+  
+}
+
+
